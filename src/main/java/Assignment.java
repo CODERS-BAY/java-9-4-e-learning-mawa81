@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Assignment {
     private String name;
     private Double maxPoints;
@@ -47,5 +49,29 @@ public class Assignment {
             System.out.println("This is not a valid value!");
         }
         return grade;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Assignment that = (Assignment) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(maxPoints, that.maxPoints) &&
+                Objects.equals(points, that.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, maxPoints, points);
+    }
+
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "name='" + name + '\'' +
+                ", maxPoints=" + maxPoints +
+                ", points=" + points +
+                '}';
     }
 }

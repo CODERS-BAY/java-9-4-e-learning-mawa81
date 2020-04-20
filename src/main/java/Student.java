@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Student {
     private String name;
@@ -34,5 +35,29 @@ public class Student {
 
     public void enroll(Lecture lecture) {
         this.lectures.add(lecture);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(name, student.name) &&
+                Objects.equals(studentID, student.studentID) &&
+                Objects.equals(lectures, student.lectures);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, studentID, lectures);
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", studentID=" + studentID +
+                ", lectures=" + lectures +
+                '}';
     }
 }
