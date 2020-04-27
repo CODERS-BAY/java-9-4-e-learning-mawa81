@@ -30,4 +30,16 @@ public class Lecture {
     public void removeAssignment(Assignment lectureAssignment) {
         this.lectureAssignments.remove(lectureAssignment);
     }
+
+    public Integer getGrade() {
+        Integer allGrades = null;
+        int count = 0;
+        for (int i = 0; i < this.lectureAssignments.size(); i++) {
+            if (this.lectureAssignments.get(i).isGraded()) {
+                allGrades += this.lectureAssignments.get(i).myGrade;
+                count++;
+            }
+        }
+        return allGrades / count;
+    }
 }

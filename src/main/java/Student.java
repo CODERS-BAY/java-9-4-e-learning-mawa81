@@ -37,6 +37,13 @@ public class Student {
         this.lectures.add(lecture);
     }
 
+    public void getSchoolReport() {
+        for (Lecture l : this.lectures) {
+            System.out.printf("12%s ........... 2%d", l.name, l.getGrade());
+        }
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
