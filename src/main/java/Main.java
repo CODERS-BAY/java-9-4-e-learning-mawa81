@@ -9,12 +9,12 @@ public class Main {
         System.out.println("grade: " + ass01.grade(190.00));
         Lecture mathematik = new Lecture("Mathematik");
 
-        mathematik.addAssignment(ass01);
+      /*  mathematik.addAssignment(ass01);
         mathematik.addAssignment(ass02);
         mathematik.addAssignment(ass03);
-        mathematik.removeAssignment(ass02);
+        mathematik.removeAssignment(ass02);*/
 
-        mathematik.getLectureAssignments();
+        //mathematik.getLectureAssignments();
 
         Lecture deutsch = new Lecture("Deutsch");
 
@@ -34,7 +34,15 @@ public class Main {
         student1.enroll(musik);
         student1.enroll(turnen);
 
-        System.out.println(student1.getLectures());
+        System.out.println("Student1 " + student1.getLectures().get(student1.getLectures().indexOf(mathematik)));
+        student1.getLectures().get(student1.getLectures().indexOf(mathematik)).addAssignment(ass01);
+        System.out.println(student1.getLectures().get(student1.getLectures().indexOf(mathematik)).getLectureAssignments().get(student1.getLectures().get(student1.getLectures().indexOf(mathematik)).getLectureAssignments().indexOf(ass01)).grade(170.00));
+
+
+        System.out.println("Student1 " + student1.getLectures().get(0).getName());
+        System.out.println("Student1 " + student1.getLectures().get(0).getLectureAssignments());
+
+        System.out.println("Student1 " + student1.getLectures().toString());
 
     }
 }

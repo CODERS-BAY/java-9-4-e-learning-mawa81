@@ -39,7 +39,7 @@ public class Student {
 
     public void getSchoolReport() {
         for (Lecture l : this.lectures) {
-            System.out.printf("12%s ........... 2%d", l.name, l.getGrade());
+            System.out.printf("12%s ........... 2%d", l.getName(), l.getGrade());
         }
 
     }
