@@ -8,14 +8,17 @@ public class LectureTest {
     @Test
     @DisplayName("A Lecture without any assignments returns null for the grade")
     public void testLectureWithoutAssignments() {
-        // TODO implement
-        assertEquals(true, true);
+
+        Lecture testLecture = new Lecture("test");
+        Integer myGrade = testLecture.getGrade();
+        System.out.println(testLecture.getGrade());
+        assertEquals(null, myGrade);
     }
 
     @Test
     @DisplayName("A Lecture with exactly one assignments returns the grade of that assignment")
     public void testLectureWithSingleAssignment() {
-        // TODO implement
+        Assignment testAssignment = new Assignment("Test01", 200.00);
         assertEquals(true, true);
     }
 

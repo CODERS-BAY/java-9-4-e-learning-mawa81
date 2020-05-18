@@ -1,16 +1,17 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Student {
     private String name;
     private Integer studentID;
-    private List<Lecture> lectures;
+    private List<LectureParticipation> lectures;
+    private LectureParticipation lectureParticipation;
 
     public Student(String name, Integer studentID) {
         this.name = name;
         this.studentID = studentID;
         this.lectures = new ArrayList<>();
+        this.lectureParticipation = new LectureParticipation();
     }
 
     public String getName() {
@@ -29,17 +30,34 @@ public class Student {
         this.studentID = studentID;
     }
 
-    public List<Lecture> getLectures() {
-        return lectures;
+    public List<LectureParticipation> getLectures() {
+
+        return this.lectures;
+    }
+
+    public Lecture getLecture(Lecture lecture) {
+        Integer myIndex = null;
+        for (int i = 0; i < lectures.size(); i++) {
+            System.out.println(lectures.get(i));
+          /*  if (lectures.get(i).getLecture()==lecture){
+
+                myIndex = i;
+            }*/
+        }
+
+
+        return lectures.get(myIndex).getLecture();
     }
 
     public void enroll(Lecture lecture) {
-        this.lectures.add(lecture);
+
+        this.lectureParticipation.setLecture(lecture);
+        this.lectures.add(lectureParticipation);
     }
 
     public void getSchoolReport() {
-        for (Lecture l : this.lectures) {
-            System.out.printf("12%s ........... 2%d", l.getName(), l.getGrade());
+        for (LectureParticipation l : this.lectures) {
+            System.out.printf("12%s ........... 2%d", l.getLecture(), l.getGrade());
         }
 
     }
@@ -48,15 +66,22 @@ public class Student {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Student student = (Student) o;
-        return Objects.equals(name, student.name) &&
-                Objects.equals(studentID, student.studentID) &&
-                Objects.equals(lectures, student.lectures);
+
+        if (name != null ? !name.equals(student.name) : student.name != null) return false;
+        if (studentID != null ? !studentID.equals(student.studentID) : student.studentID != null) return false;
+        if (lectures != null ? !lectures.equals(student.lectures) : student.lectures != null) return false;
+        return lectureParticipation != null ? lectureParticipation.equals(student.lectureParticipation) : student.lectureParticipation == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, studentID, lectures);
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (studentID != null ? studentID.hashCode() : 0);
+        result = 31 * result + (lectures != null ? lectures.hashCode() : 0);
+        result = 31 * result + (lectureParticipation != null ? lectureParticipation.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -65,6 +90,7 @@ public class Student {
                 "name='" + name + '\'' +
                 ", studentID=" + studentID +
                 ", lectures=" + lectures +
+                ", lectureParticipation=" + lectureParticipation +
                 '}';
     }
 }
