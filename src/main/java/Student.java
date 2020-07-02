@@ -39,10 +39,10 @@ public class Student {
         Integer myIndex = null;
         for (int i = 0; i < lectures.size(); i++) {
             System.out.println(lectures.get(i));
-          /*  if (lectures.get(i).getLecture()==lecture){
+            if (lectures.get(i).getLecture() == lecture) {
 
                 myIndex = i;
-            }*/
+            }
         }
 
 

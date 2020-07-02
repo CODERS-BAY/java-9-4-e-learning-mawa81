@@ -71,4 +71,12 @@ public class LectureParticipation {
         result = 31 * result + (gradedAssignments != null ? gradedAssignments.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "LectureParticipation{" +
+                "lecture=" + lecture +
+                ", gradedAssignments=" + gradedAssignments +
+                '}';
+    }
 }
