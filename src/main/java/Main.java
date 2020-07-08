@@ -1,42 +1,68 @@
 public class Main {
     public static void main(String[] args) {
-        Assignment ass01 = new Assignment("assignment01", 200.00);
-        Assignment ass02 = new Assignment("assignment02", 150.00);
-        Assignment ass03 = new Assignment("assignment03", 180.00);
-        Assignment ass04 = new Assignment("assignment04", 250.00);
-        Assignment ass05 = new Assignment("assignment05", 140.00);
-        Assignment ass06 = new Assignment("assignment06", 100.00);
+
+
+        Assignment assMath01 = new Assignment("Assignment_Mathematik_01", 200.00);
+        Assignment assMath02 = new Assignment("Assignment_Mathematik_02", 150.00);
+        Assignment assMath03 = new Assignment("Assignment_Mathematik_03", 180.00);
 
         Lecture mathematik = new Lecture("Mathematik");
 
-        mathematik.addAssignment(ass01);
-        mathematik.addAssignment(ass02);
-        mathematik.addAssignment(ass03);
-        mathematik.removeAssignment(ass02);
-        System.out.println(mathematik.getName());
-        System.out.println(mathematik.getLectureAssignments());
+        mathematik.addAssignment(assMath01);
+        mathematik.addAssignment(assMath02);
+        mathematik.addAssignment(assMath03);
+        System.out.println(mathematik.toString());
+        mathematik.removeAssignment(assMath02);
+        System.out.println(mathematik.toString());
+        mathematik.addAssignment(assMath02);
+        System.out.println(mathematik.toString());
+
+        Assignment assDeut01 = new Assignment("Assignment_Deutsch_01", 250.00);
+        Assignment assDeut02 = new Assignment("Assignment_Deutsch_02", 140.00);
+        Assignment assDeut03 = new Assignment("Assignment_Deutsch_03", 100.00);
 
         Lecture deutsch = new Lecture("Deutsch");
 
+        deutsch.addAssignment(assDeut01);
+        deutsch.addAssignment(assDeut02);
+        deutsch.addAssignment(assDeut03);
+
+        System.out.println(deutsch.toString());
+
+        Assignment assGesch01 = new Assignment("Assignment_Geschichte_01", 150.00);
+        Assignment assGesch02 = new Assignment("Assignment_Geschichte_02", 120.00);
+        Assignment assGesch03 = new Assignment("Assignment_Geschichte_03", 180.00);
+
         Lecture geschichte = new Lecture("Geschichte");
+
+        geschichte.addAssignment(assGesch01);
+        geschichte.addAssignment(assGesch02);
+        geschichte.addAssignment(assGesch03);
+
+        System.out.println(geschichte.toString());
+
+        Assignment assInfo01 = new Assignment("Assignment_Informatik_01", 240.00);
+        Assignment assInfo02 = new Assignment("Assignment_Informatik_02", 220.00);
+        Assignment assInfo03 = new Assignment("Assignment_Informatik_03", 190.00);
 
         Lecture informatik = new Lecture("Informatik");
 
-        Lecture musik = new Lecture("Musik");
-
-        Lecture turnen = new Lecture("Turnen");
-
         Student student1 = new Student("Manfred Muster", 000001);
-        student1.enroll(mathematik);
-        student1.enroll(deutsch);
-        student1.enroll(geschichte);
-        student1.enroll(informatik);
-        student1.enroll(musik);
-        student1.enroll(turnen);
 
-        System.out.println(student1.getLectures());
+        LectureParticipation student1LP = new LectureParticipation(student1);
+        student1LP.enroll(mathematik);
+        student1LP.enroll(deutsch);
+        student1LP.enroll(geschichte);
+        student1LP.enroll(informatik);
 
-        System.out.println(student1.getLecture(mathematik));
+        System.out.println();
+        // student1.getLecture(mathematik).getLectureAssignments();
+        System.out.println("getLectures " + student1LP.getLectures());
+
+        student1LP.getLecture(mathematik).getGradedAssignments().
+
+                student1LP.getSchoolReport();
+        //student1.getSchoolReport();
         // System.out.println(student1.getLecture(mathematik).getName());
         //System.out.println(student1.getLecture(mathematik));
 

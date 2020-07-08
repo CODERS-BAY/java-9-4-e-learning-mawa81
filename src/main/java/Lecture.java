@@ -1,15 +1,25 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class Lecture {
     private String name;
 
-    private List<Assignment> lectureAssignments;
+    private HashSet<Assignment> lectureAssignments;
+    private HashSet<GradedAssignment> gradedAssignments;
 
     public Lecture(String name) {
         this.setName(name);
-        this.lectureAssignments = new ArrayList<>();
+        this.lectureAssignments = new HashSet<Assignment>();
+        this.gradedAssignments = new HashSet<GradedAssignment>();
+    }
+
+    public HashSet<GradedAssignment> getGradedAssignments() {
+        return gradedAssignments;
+    }
+
+    public void setGradedAssignments(HashSet<GradedAssignment> gradedAssignments) {
+        this.gradedAssignments = gradedAssignments;
     }
 
     public String getName() {
@@ -20,8 +30,12 @@ public class Lecture {
         this.name = name;
     }
 
-    public List<Assignment> getLectureAssignments() {
+    public HashSet<Assignment> getLectureAssignments() {
         return lectureAssignments;
+    }
+
+    public void setLectureAssignments(HashSet<Assignment> lectureAssignments) {
+        this.lectureAssignments = lectureAssignments;
     }
 
     public void addAssignment(Assignment lectureAssignment) {
@@ -32,6 +46,26 @@ public class Lecture {
         this.lectureAssignments.remove(lectureAssignment);
     }
 
+    public Integer getGrade() {
+        Integer allGrades = null;
+
+        if (gradedAssignments.size() > 0) {
+            int count = 0;
+            for (int i = 0; i < this.gradedAssignments.size(); i++) {
+                Iterator it = gradedAssignments.iterator();
+                while (it.hasNext()) {
+                    System.out.println(it.next());
+               /* if (this.lectureAssignments.get(i).isGraded()) {
+                    allGrades += this.lectureAssignments.get(i).getMyGrade();
+                    count++;
+                }*/
+                }
+            }
+            return allGrades / count;
+        } else {
+            return allGrades;
+        }
+    }
 
     @Override
     public String toString() {

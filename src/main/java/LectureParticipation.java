@@ -1,58 +1,73 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class LectureParticipation {
-    private Lecture lecture;
-    private List<GradedAssignment> gradedAssignments;
+    private Student student;
+    private List<Lecture> lectures;
 
-    public LectureParticipation(Lecture lecture, List<GradedAssignment> gradedAssignments) {
-        this.lecture = lecture;
-        this.gradedAssignments = gradedAssignments;
+    public LectureParticipation(Student student) {
+        this.student = student;
+        this.lectures = new ArrayList<Lecture>();
     }
 
-    public LectureParticipation() {
-        this.lecture = null;
-        this.gradedAssignments = null;
+    public Student getStudent() {
+        return student;
     }
 
-    public Lecture getLecture() {
-        return lecture;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public void setLecture(Lecture lecture) {
-        this.lecture = lecture;
+    public List<Lecture> getLectures() {
+        return lectures;
     }
 
-    public Assignment getLectureAssignment(Assignment assignment) {
-        return gradedAssignments.get(gradedAssignments.indexOf(assignment)).getAssignment();
+    public void setLectures(List<Lecture> lectures) {
+        this.lectures = lectures;
     }
 
-    public List<GradedAssignment> getGradedAssignments() {
-        return gradedAssignments;
+    public Lecture getLecture(Lecture lecture) {
+        return lectures.get(lectures.indexOf(lecture));
     }
 
-    public void setGradedAssignments(List<GradedAssignment> gradedAssignments) {
-        this.gradedAssignments = gradedAssignments;
-    }
+    public Integer grade(Assignment assignment, Double points) {
+        Double percentage = 100 * points / assignment.getMaxPoints();
+        System.out.println(percentage);
 
-    public void grade(Assignment assignment, Double points) {
-        this.gradedAssignments.get(this.gradedAssignments.indexOf(assignment)).grade(points);
-    }
-
-    public Integer getGrade() {
-        Integer allGrades = null;
-        if (gradedAssignments.size() > 0) {
-            int count = 0;
-            for (int i = 0; i < this.gradedAssignments.size(); i++) {
-                if (this.gradedAssignments.get(i).isGraded()) {
-                    allGrades += this.gradedAssignments.get(i).getMyGrade();
-                    count++;
-                }
-            }
-            return allGrades / count;
+        if (percentage >= 0 && percentage < 50) {
+            myGrade = 5;
+        } else if (percentage >= 50 && percentage < 65) {
+            myGrade = 4;
+        } else if (percentage >= 65 && percentage < 80) {
+            myGrade = 3;
+        } else if (percentage >= 80 && percentage < 90) {
+            myGrade = 2;
+        } else if (percentage >= 90 && percentage <= 100) {
+            myGrade = 1;
         } else {
-            return allGrades;
+            System.out.println("This is not a valid value!");
         }
+
+        return myGrade;
     }
+
+    public void enroll(Lecture lecture) {
+        lectures.add(lecture);
+    }
+
+
+    public void getSchoolReport() {
+        System.out.println();
+        System.out.println(getStudent().toString());
+        System.out.println("---------------------------------------");
+        System.out.println("     Fach:                     Note:");
+        System.out.println("---------------------------------------");
+        for (Lecture l : lectures) {
+            System.out.printf("%12s .................. %2d\n", l.getName(), l.getGrade());
+        }
+
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -61,22 +76,22 @@ public class LectureParticipation {
 
         LectureParticipation that = (LectureParticipation) o;
 
-        if (lecture != null ? !lecture.equals(that.lecture) : that.lecture != null) return false;
-        return gradedAssignments != null ? gradedAssignments.equals(that.gradedAssignments) : that.gradedAssignments == null;
+        if (student != null ? !student.equals(that.student) : that.student != null) return false;
+        return lectures != null ? lectures.equals(that.lectures) : that.lectures == null;
     }
 
     @Override
     public int hashCode() {
-        int result = lecture != null ? lecture.hashCode() : 0;
-        result = 31 * result + (gradedAssignments != null ? gradedAssignments.hashCode() : 0);
+        int result = student != null ? student.hashCode() : 0;
+        result = 31 * result + (lectures != null ? lectures.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "LectureParticipation{" +
-                "lecture=" + lecture +
-                ", gradedAssignments=" + gradedAssignments +
+                "student=" + student +
+                ", lectures=" + lectures +
                 '}';
     }
 }
